@@ -1,0 +1,12 @@
+.logo-box {
+  width: 80px;
+  font-size: 0.75rem;
+}
+
+.navbar .btn-link {
+  text-decoration: none;
+}
+
+.navbar .btn-link:hover {
+  color: #0d6efd;
+}

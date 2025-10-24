@@ -1,0 +1,42 @@
+<div class="container mt-4">
+  <!-- Header -->
+  <div class="d-flex justify-content-between mb-3">
+    <h4>User Management</h4>
+    <!-- <a routerLink="/add-user" class="btn btn-primary">+ Add User</a> -->
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#addUserSidebar" aria-controls="addUserSidebar">
+  + Add User
+</button>
+
+  </div>
+
+  <!-- User Table -->
+  <table class="table table-bordered align-middle">
+    <thead class="table-light">
+      <tr>
+        <th>Sr. No</th>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+        <button class="btn btn-link text-primary" (click)="viewUser(user.id)">
+  <i class="bi bi-eye"></i>
+</button>
+
+<button class="btn btn-link text-danger" (click)="deleteUser(user.id)">
+  <i class="bi bi-trash"></i>
+</button>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
