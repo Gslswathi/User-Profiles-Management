@@ -25,6 +25,11 @@
               Contact Info
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab==='other'" (click)="setActiveTab('other')">
+              Other
+            </a>
+          </li>
         </ul>
 
         <!-- BASIC DETAILS TAB -->
@@ -56,18 +61,28 @@
         <div *ngIf="activeTab==='education'">
           <div class="row mb-3">
             <div class="col-md-6">
-              <label class="form-label">Degree</label>
-              <input formControlName="degree" class="form-control" [readonly]="!editMode" />
+              <label class="form-label">School / College</label>
+              <input formControlName="school" class="form-control" [readonly]="!editMode" />
             </div>
             <div class="col-md-6">
-              <label class="form-label">University</label>
-              <input formControlName="university" class="form-control" [readonly]="!editMode" />
+              <label class="form-label">Course</label>
+              <input formControlName="course" class="form-control" [readonly]="!editMode" />
             </div>
           </div>
           <div class="row mb-3">
             <div class="col-md-6">
-              <label class="form-label">Year of Passing</label>
-              <input formControlName="year" class="form-control" [readonly]="!editMode" />
+              <label class="form-label">Degree</label>
+              <input formControlName="degree" class="form-control" [readonly]="!editMode" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Year of Completion</label>
+              <input formControlName="yearOfCompletion" class="form-control" [readonly]="!editMode" />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Grade</label>
+              <input formControlName="grade" class="form-control" [readonly]="!editMode" />
             </div>
           </div>
         </div>
@@ -89,6 +104,50 @@
             <div class="col-md-12">
               <label class="form-label">Address</label>
               <textarea formControlName="address" class="form-control" rows="3" [readonly]="!editMode"></textarea>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <label class="form-label">Pincode</label>
+              <input formControlName="pincode" class="form-control" [readonly]="!editMode" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Country</label>
+              <input formControlName="country" class="form-control" [readonly]="!editMode" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">LinkedIn</label>
+              <input formControlName="linkedIn" class="form-control" [readonly]="!editMode" />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <label class="form-label">Resume (filename)</label>
+              <input formControlName="resume" class="form-control" [readonly]="!editMode" />
+            </div>
+          </div>
+        </div>
+
+        <!-- OTHER TAB -->
+        <div *ngIf="activeTab==='other'">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Skills</label>
+              <input formControlName="skills" class="form-control" [readonly]="!editMode" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Domain</label>
+              <input formControlName="domain" class="form-control" [readonly]="!editMode" />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Sub Domain</label>
+              <input formControlName="subDomain" class="form-control" [readonly]="!editMode" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Experience</label>
+              <input formControlName="experience" class="form-control" [readonly]="!editMode" />
             </div>
           </div>
         </div>

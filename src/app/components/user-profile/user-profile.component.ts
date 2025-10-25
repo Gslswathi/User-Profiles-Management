@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class UserProfileComponent implements OnInit {
   user: any | null = null;
-  activeTab: 'basic' | 'education' | 'contact' = 'basic';
+  activeTab: 'basic' | 'education' | 'contact' | 'other' = 'basic';
   loading = false;
   error: string | null = null;
   profileForm!: FormGroup;
@@ -28,15 +28,33 @@ export class UserProfileComponent implements OnInit {
   private initForm() {
     this.profileForm = this.fb.group({
       name: ['', Validators.required],
+      firstName: [''],
+      lastName: [''],
       designation: [''],
       dob: [''],
       gender: [''],
+
+      // Education
+      school: [''],
+      course: [''],
       degree: [''],
-      university: [''],
-      year: [''],
+      yearOfCompletion: [''],
+      grade: [''],
+
+      // Contact
       email: ['', [Validators.email]],
       phone: [''],
-      address: ['']
+      address: [''],
+      pincode: [''],
+      country: [''],
+      linkedIn: [''],
+      resume: [''],
+
+      // Other
+      skills: [''],
+      domain: [''],
+      subDomain: [''],
+      experience: ['']
     });
   }
 
@@ -54,15 +72,33 @@ export class UserProfileComponent implements OnInit {
           if (this.user) {
             this.profileForm.patchValue({
               name: this.user.name || '',
+              firstName: this.user.firstName || '',
+              lastName: this.user.lastName || '',
               designation: this.user.designation || '',
               dob: this.user.dob || '',
               gender: this.user.gender || '',
+
+              // Education
+              school: this.user.school || '',
+              course: this.user.course || '',
               degree: this.user.degree || '',
-              university: this.user.university || '',
-              year: this.user.year || '',
+              yearOfCompletion: this.user.yearOfCompletion || '',
+              grade: this.user.grade || '',
+
+              // Contact
               email: this.user.email || '',
               phone: this.user.phone || '',
-              address: this.user.address || ''
+              address: this.user.address || '',
+              pincode: this.user.pincode || '',
+              country: this.user.country || '',
+              linkedIn: this.user.linkedIn || '',
+              resume: this.user.resume || '',
+
+              // Other
+              skills: this.user.skills || '',
+              domain: this.user.domain || '',
+              subDomain: this.user.subDomain || '',
+              experience: this.user.experience || ''
             });
           }
           this.loading = false;
@@ -76,7 +112,7 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  setActiveTab(tab: 'basic' | 'education' | 'contact') {
+  setActiveTab(tab: 'basic' | 'education' | 'contact' | 'other') {
     this.activeTab = tab;
   }
 
@@ -90,15 +126,33 @@ export class UserProfileComponent implements OnInit {
     if (this.user) {
       this.profileForm.patchValue({
         name: this.user.name || '',
+        firstName: this.user.firstName || '',
+        lastName: this.user.lastName || '',
         designation: this.user.designation || '',
         dob: this.user.dob || '',
         gender: this.user.gender || '',
+
+        // Education
+        school: this.user.school || '',
+        course: this.user.course || '',
         degree: this.user.degree || '',
-        university: this.user.university || '',
-        year: this.user.year || '',
+        yearOfCompletion: this.user.yearOfCompletion || '',
+        grade: this.user.grade || '',
+
+        // Contact
         email: this.user.email || '',
         phone: this.user.phone || '',
-        address: this.user.address || ''
+        address: this.user.address || '',
+        pincode: this.user.pincode || '',
+        country: this.user.country || '',
+        linkedIn: this.user.linkedIn || '',
+        resume: this.user.resume || '',
+
+        // Other
+        skills: this.user.skills || '',
+        domain: this.user.domain || '',
+        subDomain: this.user.subDomain || '',
+        experience: this.user.experience || ''
       });
     }
   }
