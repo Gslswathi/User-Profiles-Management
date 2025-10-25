@@ -1,0 +1,105 @@
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-body">
+      <h4 class="mb-4 text-center">User Profile</h4>
+
+      <!-- Bootstrap Tabs -->
+      <ul class="nav nav-tabs mb-3">
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="activeTab==='basic'" (click)="setActiveTab('basic')">Basic Details</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="activeTab==='education'" (click)="setActiveTab('education')">Education</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="activeTab==='work'" (click)="setActiveTab('work')">Work Experience</a>
+        </li>
+      </ul>
+
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <!-- Basic Details -->
+        <div *ngIf="activeTab==='basic'" class="tab-pane active">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Name</label>
+              <input formControlName="name" class="form-control" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Designation</label>
+              <input formControlName="designation" class="form-control" />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input formControlName="email" class="form-control" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Phone</label>
+              <input formControlName="phone" class="form-control" />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <label class="form-label">DOB</label>
+              <input type="date" formControlName="dob" class="form-control" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Gender</label>
+              <select formControlName="gender" class="form-select">
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Address</label>
+              <input formControlName="address" class="form-control" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div *ngIf="activeTab==='education'" class="tab-pane active">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Degree</label>
+              <input formControlName="degree" class="form-control" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">University</label>
+              <input formControlName="university" class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Year</label>
+            <input formControlName="year" class="form-control" />
+          </div>
+        </div>
+
+        <!-- Work Experience -->
+        <div *ngIf="activeTab==='work'" class="tab-pane active">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Company</label>
+              <input formControlName="company" class="form-control" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Position</label>
+              <input formControlName="position" class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Years</label>
+            <input formControlName="years" class="form-control" />
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <button class="btn btn-primary px-4" type="submit">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

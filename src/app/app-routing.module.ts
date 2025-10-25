@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [  { path: '', component: UserListComponent },
   { path: 'add-user', component: AddUserComponent },
   { path: 'profile/:id', component: UserProfileComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }];
 
 @NgModule({

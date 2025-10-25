@@ -1,22 +1,112 @@
-<div class="container mt-4" *ngIf="user">
-  <div class="card shadow-sm p-4">
-    <div class="text-center">
-      <i class="bi bi-person-circle fs-1 text-primary"></i>
-      <h5 class="mt-3">{{ user.name }}</h5>
-      <p class="text-muted">{{ user.email }}</p>
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-body">
+      <h4 class="mb-4 text-center">User Profile</h4>
+
+      <div *ngIf="loading">Loading...</div>
+      <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+      <form [formGroup]="profileForm" (ngSubmit)="save()">
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs mb-3">
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab==='basic'" (click)="setActiveTab('basic')">
+              Basic Details
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab==='education'" (click)="setActiveTab('education')">
+              Education
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [class.active]="activeTab==='contact'" (click)="setActiveTab('contact')">
+              Contact Info
+            </a>
+          </li>
+        </ul>
+
+        <!-- BASIC DETAILS TAB -->
+        <div *ngIf="activeTab==='basic'">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Full Name</label>
+              <input formControlName="name" class="form-control" [readonly]="!editMode" />
+              <div *ngIf="profileForm.get('name')?.touched && profileForm.get('name')?.invalid" class="text-danger small">Name is required.</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Designation</label>
+              <input formControlName="designation" class="form-control" [readonly]="!editMode" />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Date of Birth</label>
+              <input type="date" formControlName="dob" class="form-control" [readonly]="!editMode" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Gender</label>
+              <input formControlName="gender" class="form-control" [readonly]="!editMode" />
+            </div>
+          </div>
+        </div>
+
+        <!-- EDUCATION TAB -->
+        <div *ngIf="activeTab==='education'">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Degree</label>
+              <input formControlName="degree" class="form-control" [readonly]="!editMode" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">University</label>
+              <input formControlName="university" class="form-control" [readonly]="!editMode" />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Year of Passing</label>
+              <input formControlName="year" class="form-control" [readonly]="!editMode" />
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTACT INFO TAB -->
+        <div *ngIf="activeTab==='contact'">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input formControlName="email" class="form-control" [readonly]="!editMode" />
+              <div *ngIf="profileForm.get('email')?.touched && profileForm.get('email')?.invalid" class="text-danger small">Enter a valid email.</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Phone</label>
+              <input formControlName="phone" class="form-control" [readonly]="!editMode" />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <label class="form-label">Address</label>
+              <textarea formControlName="address" class="form-control" rows="3" [readonly]="!editMode"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-between mt-3">
+          <div>
+            <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+          </div>
+          <div>
+            <button *ngIf="!editMode" type="button" class="btn btn-primary" (click)="enableEdit()">Edit</button>
+            <button *ngIf="editMode" type="submit" class="btn btn-success" [disabled]="profileForm.invalid">Save</button>
+            <button *ngIf="editMode" type="button" class="btn btn-outline-secondary ms-2" (click)="cancelEdit()">Cancel</button>
+          </div>
+        </div>
+
+      </form>
+
     </div>
-
-    <hr>
-    <h6>Profile Details</h6>
-    <p><strong>Name:</strong> {{ user.name }}</p>
-    <p><strong>Email:</strong> {{ user.email }}</p>
-    <p><strong>Phone:</strong> +91 8332883854</p>
-
-    <button class="btn btn-secondary mt-3" (click)="goBack()">Back</button>
   </div>
-</div>
-
-<div *ngIf="!user" class="text-center mt-5">
-  <p class="text-danger">⚠️ User not found!</p>
-  <button routerLink="/" class="btn btn-outline-secondary">Go Back</button>
 </div>
